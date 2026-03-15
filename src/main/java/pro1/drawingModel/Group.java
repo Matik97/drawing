@@ -24,10 +24,10 @@ public class Group extends XY {
     public void draw(Graphics2D g) {
         AffineTransform transform = g.getTransform();
 
-        g.translate(x,y);
-        g.rotate(Math.toRadians(rotationDegrees));
-        g.scale(scaleX,scaleY);
-        for(var item:items)
+        g.translate(this.x,this.y);
+        g.rotate(Math.toRadians(this.rotationDegrees));
+        g.scale(this.scaleX, this.scaleY);
+        for(var item: this.items)
             item.draw(g);
 
         g.setTransform(transform);

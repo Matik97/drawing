@@ -12,6 +12,6 @@ public class Text extends XY {
 
     @Override
     public void draw(Graphics2D g) {
-        g.drawString(this.text,x,y);
+        g.drawString(this.text,this.x,this.y);
     }
 }
