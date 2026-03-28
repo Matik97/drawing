@@ -14,6 +14,8 @@ public class MainFrame extends JFrame {
     private int x;
     private int y;
     private String color = "#000000";
+    private JCheckBox colorCheckBox;
+    private OptionsPanel optionsPanel;
 
     public void setColor(String color) {
         this.color = color;
@@ -32,6 +34,9 @@ public class MainFrame extends JFrame {
         JPanel leftPanel = new OptionsPanel(this);
         this.add(leftPanel, BorderLayout.WEST);
 
+        colorCheckBox = new JCheckBox("Barevné stromy", true);
+        leftPanel.add(colorCheckBox);
+
         this.displayPanel.addMouseListener(new MouseAdapter() {
             @Override
             public void mousePressed(MouseEvent e) {
@@ -43,7 +48,7 @@ public class MainFrame extends JFrame {
     }
 
     public void showExample(){
-        MainFrame.this.displayPanel.setDrawable(this.example());
+        MainFrame.this.displayPanel.addDrawable(this.example());
     }
 
     private Drawable example() {
@@ -52,4 +57,6 @@ public class MainFrame extends JFrame {
         var d3 = new Line(0, 50,170,170,3, this.color);
         return new Group(new Drawable[]{d1, d2, d3}, this.x, this.y, 40, 1, 1);
     }
+    public boolean isBarevne() {
+        return this.optionsPanel.isBarevne();   }
 }

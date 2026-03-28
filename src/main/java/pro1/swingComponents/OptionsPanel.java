@@ -5,12 +5,18 @@ import pro1.utils.ColorUtils;
 import javax.swing.*;
 import java.awt.*;
 
-public class OptionsPanel extends JPanel
-{
+public class OptionsPanel extends JPanel {
     private final MainFrame parent;
     private JSlider rSlider;
     private JSlider gSlider;
     private JSlider bSlider;
+
+
+    private JCheckBox colorCheckBox;
+    {
+    colorCheckBox =new JCheckBox("Barevné stromy",true);
+    this.add(colorCheckBox);
+}
 
     public OptionsPanel(MainFrame parent) {
         this.parent = parent;
@@ -41,5 +47,8 @@ public class OptionsPanel extends JPanel
                 this.bSlider.getValue()
         ));
         this.parent.showExample();
+    }
+    public boolean isBarevne() {
+        return colorCheckBox.isSelected();
     }
 }
