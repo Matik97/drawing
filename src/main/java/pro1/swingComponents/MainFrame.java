@@ -1,8 +1,7 @@
 package pro1.swingComponents;
 
 import pro1.drawingModel.*;
-import pro1.drawingModel.Rectangle;
-import pro1.utils.ColorUtils;
+
 
 import javax.swing.*;
 import java.awt.*;
@@ -13,13 +12,7 @@ public class MainFrame extends JFrame {
     private DisplayPanel displayPanel;
     private int x;
     private int y;
-    private String color = "#000000";
-    private JCheckBox colorCheckBox;
     private OptionsPanel optionsPanel;
-
-    public void setColor(String color) {
-        this.color = color;
-    }
 
     public MainFrame() {
         this.setTitle("PRO1 Drawing");
@@ -31,8 +24,8 @@ public class MainFrame extends JFrame {
         this.displayPanel = new DisplayPanel();
         this.add(this.displayPanel, BorderLayout.CENTER);
 
-        JPanel leftPanel = new OptionsPanel(this);
-        this.add(leftPanel, BorderLayout.WEST);
+        this.optionsPanel = new OptionsPanel(this);
+        this.add(this.optionsPanel, BorderLayout.WEST);
 
         this.displayPanel.addMouseListener(new MouseAdapter() {
             @Override
@@ -54,11 +47,15 @@ public class MainFrame extends JFrame {
 
 
     private Drawable example() {
-        var d1 = new Ellipse(0, 0, 150, 250, this.color);
-        var d2 = new Text(0, 0, this.color);
-        var d3 = new Line(0, 50,170,170,3, this.color);
-        return new Group(new Drawable[]{d1, d2, d3}, this.x, this.y, 40, 1, 1);
+        int velikost = this.optionsPanel.getScaleValue();
+        return new Strom(this.x, this.y, velikost, velikost, this);
+
     }
     public boolean isBarevne() {
         return this.optionsPanel.isBarevne();   }
+
+
+    public void clearTrees() {
+        this.displayPanel.clear();
+    }
 }

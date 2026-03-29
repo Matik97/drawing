@@ -25,7 +25,7 @@ public class Strom implements Drawable {
     public void draw(Graphics2D g) {
 
         String barvaListu = this.frame.isBarevne() ? "#228B22" : "#808080";
-        String barvaKmene = this.frame.isBarevne() ? "#8B4513" : "#A9A9A9";
+        String barvaKmene = this.frame.isBarevne() ? "#228B22" : "#808080";
 
 
         Drawable[] casti = new Drawable[] {

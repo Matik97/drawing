@@ -1,16 +1,12 @@
 package pro1.swingComponents;
 
-import pro1.utils.ColorUtils;
 
 import javax.swing.*;
 import java.awt.*;
 
 public class OptionsPanel extends JPanel {
     private final MainFrame parent;
-    private JSlider rSlider;
-    private JSlider gSlider;
-    private JSlider bSlider;
-
+    public JSlider scaleSlider;
 
 
     public JCheckBox colorCheckBox;
@@ -25,28 +21,24 @@ public class OptionsPanel extends JPanel {
     public OptionsPanel(MainFrame parent) {
         this.parent = parent;
         this.setPreferredSize(new Dimension(200, 0));
-        JButton newColorBtn = new JButton("Náhodná barva");
-        this.add(newColorBtn);
-        newColorBtn.addActionListener(
-                (e)-> {
-                    this.parent.setColor(ColorUtils.randomColor());
-                    this.parent.showExample();
-                }
-        );
-        this.rSlider = new JSlider(0,255,0);
-        this.add(this.rSlider);
-        this.rSlider.addChangeListener((e)->this.sliderChanged());
+        this.add(new JLabel("Velikost stromu:"));
+        this.scaleSlider = new JSlider(1, 10, 2);
+        this.add(this.scaleSlider);
+
+
+        JButton resetBtn = new JButton("Vymazat stromy");
+        this.add(resetBtn);
+
+        resetBtn.addActionListener(e -> {
+            this.parent.clearTrees();
+        });
     }
 
-    private void sliderChanged(){
-        this.parent.setColor(ColorUtils.color(
-                this.rSlider.getValue(),
-               this.gSlider.getValue(),
-               this.bSlider.getValue()
-        ));
-        this.parent.showExample();
-    }
+
     public boolean isBarevne() {
         return colorCheckBox.isSelected();
+    }
+    public int getScaleValue() {
+        return this.scaleSlider.getValue();
     }
 }

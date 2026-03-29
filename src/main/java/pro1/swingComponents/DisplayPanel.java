@@ -9,7 +9,6 @@ import java.util.List;
 
 public class DisplayPanel extends JPanel {
 
-    Drawable drawable = null;
     private List<Drawable> drawables = new ArrayList<>();
 
 
@@ -24,8 +23,16 @@ public class DisplayPanel extends JPanel {
 
     @Override
     public void paintComponent(Graphics g) {
+        super.paintComponent(g);
+
         for (Drawable tvar : this.drawables) {
             tvar.draw((Graphics2D) g);
+
         }
+
+    }
+    public void clear() {
+        this.drawables.clear();
+        this.repaint();
     }
 }
